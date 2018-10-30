@@ -1,8 +1,20 @@
 class GameSerializer < ActiveModel::Serializer
-
-  has_many :plays
+  attributes :game_id, :scores
 
   def game_id
-    self.id
+    object.id
+  end
+
+  def scores
+    [
+      {
+          "user_id": object.player_1.id,
+          "score": object.player_1_total_score
+        },
+        {
+          "user_id": object.player_2.id,
+          "score": object.player_2_total_score
+        }
+      ]
   end
 end
