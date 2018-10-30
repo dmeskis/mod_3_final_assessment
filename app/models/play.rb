@@ -12,7 +12,7 @@ class Play < ApplicationRecord
     }
   end
 
-  # private
+  private
 
     def score_word
       score = 0
