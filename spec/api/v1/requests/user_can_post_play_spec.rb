@@ -1,8 +1,19 @@
-require 'rails_helper_development'
+require 'rails_helper'
 
 describe 'user can post a play' do
+    before :each do
+      @josh = User.create(id: 1, name: "Josh")
+      @sal = User.create(id: 2, name: "Sal")
+
+      @game = Game.create(player_1: @josh, player_2: @sal)
+
+      @josh.plays.create(game: @game, word: "sal", score: 3)
+      @josh.plays.create(game: @game, word: "zoo", score: 12)
+      @sal.plays.create(game: @game, word: "josh", score: 14)
+      @sal.plays.create(game: @game, word: "no", score: 2)
+    end
   it 'sends a post request with params and receives a 201 response' do
-    
+
     user = User.find(1)
 
     post "/api/v1/games/1/plays?user_id=1&word=at"
