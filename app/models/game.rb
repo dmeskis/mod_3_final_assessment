@@ -4,22 +4,6 @@ class Game < ApplicationRecord
 
   has_many :plays
 
-  def scores
-    {
-      "game_id": self.id,
-      "scores": [
-        {
-          "user_id": player_1.id,
-          "score": player_1_total_score
-        },
-        {
-          "user_id": player_2.id,
-          "score": player_2_total_score
-        }
-
-      ]
-    }
-  end
 
   def player_1_total_score
     total = 0
