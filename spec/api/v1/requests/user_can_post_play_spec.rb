@@ -5,7 +5,7 @@ describe 'user can post a play' do
       @josh = User.create(id: 1, name: "Josh")
       @sal = User.create(id: 2, name: "Sal")
 
-      @game = Game.create(player_1: @josh, player_2: @sal)
+      @game = Game.create(id: 1, player_1: @josh, player_2: @sal)
 
       @josh.plays.create(game: @game, word: "sal", score: 3)
       @josh.plays.create(game: @game, word: "zoo", score: 12)
@@ -24,7 +24,7 @@ describe 'user can post a play' do
     game_data = JSON.parse(response.body)
     expect(game_data["game_id"]).to eq(1)
     expect(game_data["scores"][0]["user_id"]).to eq(1)
-    expect(game_data["scores"][0]["score"]).to eq(15)
+    expect(game_data["scores"][0]["score"]).to eq(17)
     expect(game_data["scores"][1]["user_id"]).to eq(2)
     expect(game_data["scores"][1]["score"]).to eq(16)
   end

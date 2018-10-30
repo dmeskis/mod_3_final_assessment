@@ -13,7 +13,6 @@ describe 'user hits an api endpoint for game' do
     @sal.plays.create(game: @game, word: "no", score: 2)
   end
   it 'returns a JSON response with data for that game' do
-    binding.pry
     json_response = File.open("./fixtures/game.json")
     stub_request(:get, "https://localhost:3000/api/v1/games/1").
     to_return(status: 200, body: json_response)
