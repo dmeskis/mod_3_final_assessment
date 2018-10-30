@@ -12,8 +12,14 @@ class Play < ApplicationRecord
     }
   end
 
-  private
+  # private
 
     def score_word
+      score = 0
+      split_word = word.split("")
+      split_word.each do |letter|
+        score += letter_scores[letter.upcase]
+      end
+      self.score = score
     end
 end
