@@ -2,10 +2,11 @@ require 'rails_helper_development'
 
 describe 'user can post a play' do
   it 'sends a post request with params and receives a 201 response' do
+    
+    user = User.find(1)
+
     post "/api/v1/games/1/plays?user_id=1&word=at"
-    # post api_v1_game_plays_path(game_id: 1, user_id: 1, word: "at")
-    expect(response).to be_successful
-    expect(response.status_code).to eq(201)
+    expect(response.status).to eq(201)
 
     get '/api/v1/games/1'
     expect(response).to be_successful
